@@ -1,4 +1,4 @@
-import tasks from "../modules/taskModule.js";
+import tasks from "../models/taskModel.js";
 
 class TaskController{
     static getAll = async (req,res)=>{
