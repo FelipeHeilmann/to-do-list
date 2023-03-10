@@ -18,7 +18,10 @@ class TaskController{
     }
 
     static insertTask = async(req,res)=>{
-        let task = new tasks(req.body)
+        const dateUTC = {created_at: new Date(Date.now()).toUTCString()}
+        const taskStatus = {status: 'pendente'}
+        const data = {...req.body, ...taskStatus ,...dateUTC }
+        let task = new tasks(data)
         try{
             await task.save()
             res.status(200).json(task)
