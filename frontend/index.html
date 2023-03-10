@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <title>To do List</title>
+</head>
+<body>
+    <main>
+        <section>
+            <form class="add-form">
+                <input type="text" placeholder="Adicionar tarefa">
+                <button>+</button>
+            </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tarefa</th>
+                            <th>Criada em</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Limpar a casa</td>
+                            <td>10 de março de 2023 18:04 </td>
+                            <td>
+                                <select>
+                                    <option value="pendente">pendente</option>
+                                    <option value="em andamento">em andamento</option>
+                                    <option value="concluída">concluída</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn-action">
+                                    <span class="material-symbols-outlined">
+                                        edit
+                                        </span>
+                                </button>
+                                <button class="btn-action">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                        </span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </section>
+    </main>
+<script src="./js/index.js"></script>
+</body>
+</html>
