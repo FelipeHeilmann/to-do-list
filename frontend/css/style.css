@@ -30,7 +30,7 @@ section{
     gap: 15px;
 }
 
-.add-form input{
+input{
     width: 90%;
     height: 50px;
     padding: 5px;

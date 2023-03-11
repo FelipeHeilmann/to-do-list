@@ -31,6 +31,16 @@ const deleteTasks = async(id)=>{
     loadTasks()
 }
 
+const updateTask = async({_id, title, status})=>{
+    await fetch(`http://localhost:3333/tasks/${_id}`,{
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({title,status})
+    })
+    loadTasks()
+
+}
+
 const formatDate = (dateUTC)=>{
     const options = {dateStyle: 'long', timeStyle: 'short'}
     const date = new Date(dateUTC).toLocaleString('pt-br' , options)
@@ -70,14 +80,27 @@ const createRow = (tasks)=>{
     const tdActions= createElement('td')
     const editButton = createElement('button','', '<span class="material-symbols-outlined">edit</span>')
     const deleteButton =  createElement('button','', '<span class="material-symbols-outlined">delete</span>')
-    
+    const editForm = createElement('form')
+    const editInput = createElement('input')
+
+    editInput.value = title
     editButton.classList.add('btn-action')
     deleteButton.classList.add('btn-action')  
 
+    select.addEventListener('change', ({ target }) => updateTask({ ...tasks, status: target.value }))
+    editButton.addEventListener('click', ()=>{
+        tdTile.innerText = ''
+        tdTile.appendChild(editForm)
+    })
+    editForm.addEventListener('submit', (e)=>{
+        e.preventDefault()
+        updateTask({_id, title: editInput.value, status})
+    })
     deleteButton.addEventListener('click', ()=>{
         deleteTasks(_id)
     })
     
+    editForm.appendChild(editInput)
     tdStatus.appendChild(select)
     tdActions.appendChild(editButton)
     tdActions.appendChild(deleteButton)
