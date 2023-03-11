@@ -24,11 +24,19 @@ const addTask = async(event)=>{
       
 }
 
+const deleteTasks = async(id)=>{
+    await fetch(`http://localhost:3333/tasks/${id}`, {
+        method: 'delete'
+    })  
+    loadTasks()
+}
+
 const formatDate = (dateUTC)=>{
     const options = {dateStyle: 'long', timeStyle: 'short'}
     const date = new Date(dateUTC).toLocaleString('pt-br' , options)
     return date
 }
+
 
 const createElement = (tag, innerText = '', innerHTML = '')=>{
     const element = document.createElement(tag)
@@ -53,7 +61,7 @@ const createSelect = (value)=>{
 }
 
 const createRow = (tasks)=>{
-    const {id, title, created_at, status} = tasks
+    const {_id, title, created_at, status} = tasks
     const tr = createElement('tr')
     const tdTile = createElement('td', title)  
     const tdCreatedAt = createElement('td', formatDate(created_at))
@@ -65,6 +73,10 @@ const createRow = (tasks)=>{
     
     editButton.classList.add('btn-action')
     deleteButton.classList.add('btn-action')  
+
+    deleteButton.addEventListener('click', ()=>{
+        deleteTasks(_id)
+    })
     
     tdStatus.appendChild(select)
     tdActions.appendChild(editButton)
